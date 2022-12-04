@@ -16,11 +16,22 @@ response = requests.get('https://www.imdb.com/chart/top/')
 soup = BeautifulSoup(response.content, 'html.parser')
 
 #extract the specific data you are interested in
-data = soup.find('table', attrs={'data-caller-name':'chart-top250movie'})
+data = soup.find('tbody', attrs={'class':'lister-list'})
+
+#dats = soup.find('td', attrs={'class':'titleColumn'})
+
+#data2 = soup.find('table', attrs={'data-caller-name':'chart-top250movie'})
 #convert to string
 final = str(data)
+#other = str(data2)
+#print(final)
 
-#print(data)
+print(len(final))
+
+#other test
+#print(len(other))
+
+
 #writes to a file
-with open('movielist.txt','w') as file:
+with open('movielisttest.txt','w') as file:
     file.write(final)
