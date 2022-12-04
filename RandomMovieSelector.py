@@ -26,7 +26,7 @@ final = str(data)
 #other = str(data2)
 #print(final)
 
-print(len(final))
+#print(len(final))
 
 #other test
 #print(len(other))
@@ -35,3 +35,27 @@ print(len(final))
 #writes to a file
 with open('movielisttest.txt','w') as file:
     file.write(final)
+
+file2 = open('moviesfromlist.txt','a+')
+
+with open('movielisttest.txt', 'r') as file:
+    #dau = file.read()
+#here we wanna get just the titles of the movies
+    for line in file:
+        start = line.find('alt=')
+        end = line.find(' height=')
+        extracted_data = str(line[start:end])
+        #doof = str(extracted_data)
+        file2.write(extracted_data)
+        #print(doof)
+
+print(file2.read())
+
+file2.close()
+
+#we can remove the "alt=" so we are just left with titles now
+with open('moviesfromlist.txt','r') as infile,\
+    open('moviesfromlist2.txt','w') as outfile:
+    datas = infile.read()
+    datas = datas.replace("alt="," ")
+    outfile.write(datas)
